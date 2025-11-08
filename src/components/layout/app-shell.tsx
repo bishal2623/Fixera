@@ -17,22 +17,22 @@ const protectedRoutes = [
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  // const { user, isLoading } = useUser();
   const isAuthPage = pathname === '/auth';
 
-  useEffect(() => {
-    if (!isLoading && !user && protectedRoutes.includes(pathname)) {
-        router.push('/auth');
-    }
-  }, [user, isLoading, pathname, router]);
+  // useEffect(() => {
+  //   if (!isLoading && !user && protectedRoutes.includes(pathname)) {
+  //       router.push('/auth');
+  //   }
+  // }, [user, isLoading, pathname, router]);
 
-  if (isLoading && protectedRoutes.includes(pathname)) {
-    return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"></div>
-        </div>
-    );
-  }
+  // if (isLoading && protectedRoutes.includes(pathname)) {
+  //   return (
+  //       <div className="flex items-center justify-center h-screen">
+  //           <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"></div>
+  //       </div>
+  //   );
+  // }
 
   if (isAuthPage) {
     return <main>{children}</main>;

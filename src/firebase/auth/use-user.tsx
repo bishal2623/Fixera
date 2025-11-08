@@ -9,12 +9,14 @@ export function useUser() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setIsLoading(false);
-    });
+    // const unsubscribe = onAuthStateChanged(auth, (user) => {
+    //   setUser(user);
+    //   setIsLoading(false);
+    // });
 
-    return () => unsubscribe();
+    // return () => unsubscribe();
+    setUser(null);
+    setIsLoading(false);
   }, [auth]);
 
   return { user, isLoading };

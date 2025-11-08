@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { useUser, useAuth } from "@/firebase";
-import { signOut } from "firebase/auth";
+// import { signOut } from "firebase/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 
@@ -21,11 +21,11 @@ export function Sidebar() {
   const [activeItem, setActiveItem] = useState("Home");
   const router = useRouter();
   const { user } = useUser();
-  const auth = useAuth();
+  // const auth = useAuth();
 
 
   const handleLogout = async () => {
-    await signOut(auth);
+    // await signOut(auth);
     router.push('/auth');
   }
 
