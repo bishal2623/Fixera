@@ -1,10 +1,45 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Code2, GraduationCap, Palette } from 'lucide-react';
+import { Code2, GraduationCap, Palette, Moon, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useTheme } from 'next-themes';
+import { useState, useEffect } from 'react';
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  if (!mounted) {
+    // Render a placeholder or null on the server and initial client render
+    return <div className="h-10 w-10" />;
+  }
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
+      {theme === 'light' ? (
+        <Moon className="h-5 w-5" />
+      ) : (
+        <Sun className="h-5 w-5" />
+      )}
+    </Button>
+  );
+}
 
 export default function Home() {
   const router = useRouter();
@@ -19,13 +54,14 @@ export default function Home() {
       path: '/code-refactor',
       gradient: 'from-primary/20 to-accent/20',
     },
-     {
-      id: "ai-tutor",
-      title: "AI Tutor",
-      description: "Learn with guided hints and step-by-step problem solving assistance",
+    {
+      id: 'ai-tutor',
+      title: 'AI Tutor',
+      description:
+        'Learn with guided hints and step-by-step problem solving assistance',
       icon: GraduationCap,
-      path: "/tutor",
-      gradient: "from-accent/20 to-primary/20"
+      path: '/tutor',
+      gradient: 'from-accent/20 to-primary/20',
     },
     {
       id: 'creative-canvas',
@@ -38,8 +74,14 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen w-full p-8 flex flex-col items-center justify-center bg-background">
-      <div className="text-center mb-16" style={{ animation: 'fade-in 0.5s ease-out' }}>
+    <div className="relative min-h-screen w-full p-8 flex flex-col items-center justify-center bg-background">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+      <div
+        className="text-center mb-16"
+        style={{ animation: 'fade-in 0.5s ease-out' }}
+      >
         <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
           AI Co-Builder
         </h1>
@@ -62,7 +104,11 @@ export default function Home() {
                 'hover:scale-105 hover:shadow-primary/20 hover:shadow-2xl cursor-pointer',
                 'opacity-0'
               )}
-              style={{ animation: `fade-in 0.5s ease-out ${index * 100}ms forwards` }}
+              style={{
+                animation: `fade-in 0.5s ease-out ${
+                  index * 100
+                }ms forwards`,
+              }}
             >
               <div
                 className={cn(
