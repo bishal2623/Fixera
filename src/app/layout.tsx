@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Sidebar } from '@/components/layout/new-sidebar';
+import { AppShell } from '@/components/layout/app-shell';
 
 export const metadata: Metadata = {
   title: 'AI Co-Builder - One Toolkit for All Your Creative Needs',
@@ -48,10 +48,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative min-h-screen">
-            <Sidebar />
-            <main className="ml-64">{children}</main>
-          </div>
+          <AppShell>{children}</AppShell>
           <Toaster />
         </ThemeProvider>
       </body>

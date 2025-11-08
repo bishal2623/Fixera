@@ -1,10 +1,12 @@
 'use client';
-import { Home, Code2, GraduationCap, Palette, History, Settings, Bot } from "lucide-react";
+import { Home, Code2, GraduationCap, Palette, History, Settings, Bot, LogIn, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
+
 
 const menuItems = [
-  { icon: Home, label: "Home", href: "#home" },
+  { icon: Home, label: "Home", href: "/" },
   { icon: Code2, label: "Code Refactor", href: "/code-refactor" },
   { icon: GraduationCap, label: "AI Tutor", href: "/tutor" },
   { icon: Palette, label: "Creative Canvas", href: "/creative-canvas" },
@@ -14,6 +16,10 @@ const menuItems = [
 
 export function Sidebar() {
   const [activeItem, setActiveItem] = useState("Home");
+  const router = useRouter();
+
+  // Placeholder for user state
+  const user = null; // Replace with actual user state, e.g., from a context or hook
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
@@ -35,7 +41,11 @@ export function Sidebar() {
             <a
               key={item.label}
               href={item.href}
-              onClick={() => setActiveItem(item.label)}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveItem(item.label);
+                router.push(item.href);
+              }}
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-all",
                 "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
@@ -50,15 +60,34 @@ export function Sidebar() {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center text-sm font-bold">
-            N
-          </div>
-           <div className="flex flex-col">
-            <span className="font-bold text-foreground">User</span>
-            <span className="text-xs text-sidebar-foreground">user@email.com</span>
+        {user ? (
+           <div className="flex items-center gap-3">
+             <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center">
+                <User className="w-5 h-5 text-sidebar-accent-foreground" />
+             </div>
+             <div className="flex flex-col">
+               <span className="font-bold text-foreground">{(user as any).displayName || 'User'}</span>
+               <span className="text-xs text-sidebar-foreground">{(user as any).email}</span>
+             </div>
            </div>
-        </div>
+        ) : (
+            <a
+                href="/auth"
+                onClick={(e) => {
+                    e.preventDefault();
+                    setActiveItem('Login');
+                    router.push('/auth');
+                }}
+                className={cn(
+                    "flex items-center gap-3 px-4 py-3 rounded-lg transition-all",
+                    "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                    activeItem === 'Login' && "bg-sidebar-accent text-sidebar-accent-foreground"
+                )}
+            >
+                <LogIn className="w-5 h-5" />
+                <span className="font-medium">Login</span>
+            </a>
+        )}
       </div>
     </aside>
   );
