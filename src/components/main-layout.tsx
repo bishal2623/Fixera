@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CodeXml, GraduationCap, Palette, BotMessageSquare } from 'lucide-react';
+import { CodeXml, Palette, BotMessageSquare } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import {
@@ -21,7 +21,6 @@ import {
 const navItems = [
   { href: '/', label: 'Code Refactor', icon: CodeXml, tooltip: 'Code Refactor' },
   { href: '/creative-canvas', label: 'Creative Canvas', icon: Palette, tooltip: 'Creative Canvas' },
-  { href: '/personalized-tutor', label: 'Personalized Tutor', icon: GraduationCap, tooltip: 'Personalized Tutor' },
 ];
 
 export default function MainLayout({ children }: { children: ReactNode }) {
