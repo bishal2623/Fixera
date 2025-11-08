@@ -20,9 +20,8 @@ export type CodeRefactorSuggestionsInput = z.infer<
 >;
 
 const CodeRefactorSuggestionsOutputSchema = z.object({
-  suggestions: z
-    .array(z.string())
-    .describe('An array of refactoring suggestions for the given code.'),
+  refactoredCode: z.string().describe('The refactored code snippet.'),
+  explanation: z.string().describe('A short, 2-sentence reason for the change.'),
 });
 export type CodeRefactorSuggestionsOutput = z.infer<
   typeof CodeRefactorSuggestionsOutputSchema
@@ -39,19 +38,20 @@ const prompt = ai.definePrompt({
   input: {schema: CodeRefactorSuggestionsInputSchema},
   output: {schema: CodeRefactorSuggestionsOutputSchema},
   prompt: `You are a code refactoring expert. Analyze the following code and
-  provide refactoring suggestions based on the specified coding style, if any.
+  provide a refactored version based on the specified coding style, if any.
+  Also provide a short, 2-sentence explanation for the changes.
 
   Code:
-  {{code}}
+  {{{code}}}
 
   Coding Style:
   {{#if codingStyle}}
     {{codingStyle}}
   {{else}}
-    Follow common coding best practices.
+    Follow common coding best practices for readability, performance, and maintainability.
   {{/if}}
 
-  Provide the refactoring suggestions as a numbered list.
+  Return a JSON object with two keys: "refactoredCode" and "explanation".
   `,
 });
 

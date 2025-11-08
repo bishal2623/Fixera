@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BrainCircuit, Loader2, Sparkles } from 'lucide-react';
+import { BrainCircuit, Loader2, Sparkles, Wand2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -17,12 +18,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { getCodeRefactorSuggestions } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import type { CodeRefactorSuggestionsOutput } from '@/ai/flows/code-refactor-suggestions';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function CodeRefactor() {
   const router = useRouter();
   const [codeSnippet, setCodeSnippet] = useState('');
   const [codingStyle, setCodingStyle] = useState('');
-  const [suggestions, setSuggestions] =
+  const [result, setResult] =
     useState<CodeRefactorSuggestionsOutput | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { toast } = useToast();
@@ -31,14 +33,14 @@ export default function CodeRefactor() {
     if (!codeSnippet.trim()) return;
 
     setIsAnalyzing(true);
-    setSuggestions(null);
+    setResult(null);
 
     try {
-      const result = await getCodeRefactorSuggestions({
+      const apiResult = await getCodeRefactorSuggestions({
         code: codeSnippet,
         codingStyle: codingStyle,
       });
-      setSuggestions(result);
+      setResult(apiResult);
     } catch (error) {
       console.error(error);
       toast({
@@ -93,7 +95,7 @@ export default function CodeRefactor() {
                   value={codeSnippet}
                   onChange={(e) => setCodeSnippet(e.target.value)}
                   placeholder="Paste your code here..."
-                  className="min-h-[300px] font-mono text-sm"
+                  className="min-h-[300px] font-mono text-sm bg-secondary/50"
                 />
               </div>
 
@@ -139,40 +141,61 @@ export default function CodeRefactor() {
               <Loader2 className="size-8 animate-spin text-primary" />
             </div>
           )}
-          {suggestions && suggestions.suggestions.length > 0 && (
-            <Card className="shadow-lg">
+
+          {result && (
+             <Card className="shadow-lg animate-fade-in">
               <CardHeader>
-                <CardTitle>Refactoring Suggestions</CardTitle>
+                <CardTitle>Refactoring Result</CardTitle>
+                <CardDescription>The AI has analyzed your code and provided the following improvements.</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                {suggestions.suggestions.map((suggestion, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-secondary/50 rounded-xl p-4 border border-border"
-                    style={{
-                      animation: 'fade-in 0.5s ease-out',
-                      animationFillMode: 'forwards',
-                      animationDelay: `${idx * 100}ms`,
-                      opacity: 0,
-                    }}
-                  >
-                    <div className="flex gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-xs font-semibold text-primary">
-                          {idx + 1}
-                        </span>
+              <CardContent className="space-y-6">
+                <div className="bg-secondary/30 p-4 rounded-lg border">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2"><Wand2 className="text-accent" /> AI Explanation</h3>
+                  <p className="text-sm text-muted-foreground">{result.explanation}</p>
+                </div>
+                
+                <Tabs defaultValue="side-by-side">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="side-by-side">Side-by-Side</TabsTrigger>
+                    <TabsTrigger value="after">Refactored</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="side-by-side">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      <div>
+                        <Label className="text-xs text-muted-foreground">Before</Label>
+                        <Textarea
+                          readOnly
+                          value={codeSnippet}
+                          className="mt-1 font-mono text-sm h-96 bg-background"
+                        />
                       </div>
-                      <p className="text-sm leading-relaxed flex-1">
-                        {suggestion}
-                      </p>
+                      <div>
+                        <Label className="text-xs text-muted-foreground">After</Label>
+                         <Textarea
+                          readOnly
+                          value={result.refactoredCode}
+                          className="mt-1 font-mono text-sm h-96 bg-background"
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  </TabsContent>
+                  <TabsContent value="after">
+                     <div className="mt-4">
+                        <Label className="text-xs text-muted-foreground">Refactored Code</Label>
+                         <Textarea
+                          readOnly
+                          value={result.refactoredCode}
+                          className="mt-1 font-mono text-sm h-96 bg-background"
+                        />
+                      </div>
+                  </TabsContent>
+                </Tabs>
+                
               </CardContent>
             </Card>
           )}
 
-          {!isAnalyzing && !suggestions && (
+          {!isAnalyzing && !result && (
             <div className="flex flex-col items-center justify-center text-center text-muted-foreground min-h-[300px] p-8 border-2 border-dashed rounded-lg bg-background">
               <BrainCircuit className="size-12 mb-4" />
               <p className="font-medium">
