@@ -1,7 +1,8 @@
+
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import MainLayout from '@/components/main-layout';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
     images: ['/opengraph-image-p98pqg.png'],
   },
 };
+
+const MainLayout = dynamic(() => import('@/components/main-layout'), { ssr: false });
 
 export default function RootLayout({
   children,
