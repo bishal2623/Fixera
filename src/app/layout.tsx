@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import MainLayout from '@/components/main-layout';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: 'AI Co-Builder - Code Refactor & AI Tutor Tools',
@@ -41,8 +42,15 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <MainLayout>{children}</MainLayout>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MainLayout>{children}</MainLayout>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
