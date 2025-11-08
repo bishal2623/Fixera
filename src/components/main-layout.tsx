@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CodeXml, Palette, BotMessageSquare, Home, GraduationCap, Moon, Sun } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { type ReactNode, useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
 import {
@@ -29,10 +29,20 @@ const navItems = [
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
+
+  if (!mounted) {
+    // Render a placeholder or null on the server and initial client render
+    return <div className="h-10 w-10" />;
+  }
 
   return (
     <Button
