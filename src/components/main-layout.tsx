@@ -18,8 +18,7 @@ import {
   SidebarFooter,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home, tooltip: 'Home' },
@@ -30,25 +29,20 @@ const navItems = [
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const isDark = theme === 'dark';
 
   const toggleTheme = () => {
-    setTheme(isDark ? 'light' : 'dark');
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
-    <div className="flex items-center justify-center rounded-full border bg-background/50 px-4 py-2">
-      <div className="flex items-center gap-3">
-        <Sun className="h-4 w-4 text-muted-foreground" />
-        <Switch
-          id="theme-switch"
-          checked={isDark}
-          onCheckedChange={toggleTheme}
-          aria-label="Toggle theme"
-        />
-        <Moon className="h-4 w-4 text-muted-foreground" />
-      </div>
-    </div>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
+      {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+    </Button>
   );
 }
 
