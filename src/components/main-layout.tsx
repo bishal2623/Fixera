@@ -98,7 +98,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
             <SidebarTrigger />
             <h1 className="text-lg font-semibold">AI Co-Builder</h1>
         </header>
-        {children}
+        <main>{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
