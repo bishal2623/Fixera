@@ -1,8 +1,11 @@
 'use client';
-import { Home, Code2, GraduationCap, Palette, History, Settings, Bot, LogIn, User } from "lucide-react";
+import { Home, Code2, GraduationCap, Palette, History, Settings, Bot, LogIn, User, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
+import { useUser, useAuth } from "@/firebase";
+import { signOut } from "firebase/auth";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 
 const menuItems = [
@@ -17,9 +20,14 @@ const menuItems = [
 export function Sidebar() {
   const [activeItem, setActiveItem] = useState("Home");
   const router = useRouter();
+  const { user } = useUser();
+  const auth = useAuth();
 
-  // Placeholder for user state
-  const user = null; // Replace with actual user state, e.g., from a context or hook
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push('/auth');
+  }
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
@@ -61,14 +69,20 @@ export function Sidebar() {
 
       <div className="p-4 border-t border-sidebar-border">
         {user ? (
-           <div className="flex items-center gap-3">
-             <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center">
-                <User className="w-5 h-5 text-sidebar-accent-foreground" />
-             </div>
-             <div className="flex flex-col">
-               <span className="font-bold text-foreground">{(user as any).displayName || 'User'}</span>
-               <span className="text-xs text-sidebar-foreground">{(user as any).email}</span>
-             </div>
+           <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+                <Avatar className="w-10 h-10">
+                    <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'}/>
+                    <AvatarFallback>{user.displayName?.charAt(0) || user.email?.charAt(0) || 'U'}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                <span className="font-bold text-foreground text-sm">{user.displayName || 'User'}</span>
+                <span className="text-xs text-sidebar-foreground">{user.email}</span>
+                </div>
+            </div>
+            <button onClick={handleLogout} className="text-sidebar-foreground hover:text-sidebar-accent-foreground">
+                <LogOut className="w-5 h-5"/>
+            </button>
            </div>
         ) : (
             <a

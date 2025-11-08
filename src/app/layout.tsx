@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import { AppShell } from '@/components/layout/app-shell';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'AI Co-Builder - One Toolkit for All Your Creative Needs',
@@ -48,7 +49,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AppShell>{children}</AppShell>
+          <FirebaseClientProvider>
+            <AppShell>{children}</AppShell>
+          </FirebaseClientProvider>
           <Toaster />
         </ThemeProvider>
       </body>

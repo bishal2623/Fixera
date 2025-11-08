@@ -11,8 +11,10 @@ import {
   Target,
   Zap,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const Index = () => {
+  const router = useRouter();
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
@@ -33,6 +35,7 @@ const Index = () => {
               <Button
                 size="lg"
                 className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--glow)/0.3)] hover:shadow-[0_0_30px_hsl(var(--glow)/0.5)] transition-all"
+                onClick={() => router.push('/tutor')}
               >
                 Get Started Free
               </Button>
@@ -116,6 +119,7 @@ const Index = () => {
             <Button
               size="lg"
               className="text-lg px-12 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--glow)/0.3)] hover:shadow-[0_0_30px_hsl(var(--glow)/0.5)] transition-all"
+               onClick={() => router.push('/tutor')}
             >
               Start Building Now
             </Button>

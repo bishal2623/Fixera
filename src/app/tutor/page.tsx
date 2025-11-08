@@ -1,12 +1,11 @@
 'use client';
-
-import dynamic from 'next/dynamic';
-
-const AITutor = dynamic(
-  () => import('@/components/features/ai-tutor'),
-  { ssr: false }
-);
+import AITutor from '@/components/features/ai-tutor';
+import ProtectedRoute from '@/components/auth/protected-route';
 
 export default function AITutorPage() {
-  return <AITutor />;
+  return (
+    <ProtectedRoute>
+      <AITutor />
+    </ProtectedRoute>
+  );
 }
