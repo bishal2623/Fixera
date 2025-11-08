@@ -1,45 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Code2, GraduationCap, Palette, Moon, Sun } from 'lucide-react';
+import { Code2, GraduationCap, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useTheme } from 'next-themes';
-import { useState, useEffect } from 'react';
-
-function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  if (!mounted) {
-    // Render a placeholder or null on the server and initial client render
-    return <div className="h-10 w-10" />;
-  }
-
-  return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={toggleTheme}
-      aria-label="Toggle theme"
-    >
-      {theme === 'light' ? (
-        <Moon className="h-5 w-5" />
-      ) : (
-        <Sun className="h-5 w-5" />
-      )}
-    </Button>
-  );
-}
 
 export default function Home() {
   const router = useRouter();
@@ -75,9 +39,6 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full p-8 flex flex-col items-center justify-center bg-background">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
       <div
         className="text-center mb-16"
         style={{ animation: 'fade-in 0.5s ease-out' }}

@@ -8,8 +8,12 @@ import {
   BotMessageSquare,
   Home,
   GraduationCap,
+  Sun,
+  Moon,
+  Paintbrush,
 } from 'lucide-react';
-import { type ReactNode } from 'react';
+import { type ReactNode, useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 import {
   SidebarProvider,
@@ -23,6 +27,8 @@ import {
   SidebarFooter,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
+import { ThemePicker } from '@/components/theme-picker';
 
 const navItems = [
   { href: '/', label: 'Home', icon: Home, tooltip: 'Home' },
@@ -46,8 +52,51 @@ const navItems = [
   },
 ];
 
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  if (!mounted) {
+    // Render a placeholder or null on the server and initial client render
+    return <div className="h-10 w-10" />;
+  }
+
+  // Find if the current theme is one of the dark variants
+  const isDark =
+    theme === 'dark' ||
+    theme === 'midnight-blue' ||
+    theme === 'forest-green' ||
+    theme === 'sunset-orange' ||
+    theme === 'purple-haze' ||
+    theme === 'high-contrast';
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      aria-label="Toggle light/dark theme"
+    >
+      {isDark ? (
+        <Sun className="h-5 w-5" />
+      ) : (
+        <Moon className="h-5 w-5" />
+      )}
+    </Button>
+  );
+}
+
 export default function MainLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   return (
     <SidebarProvider>
@@ -78,7 +127,19 @@ export default function MainLayout({ children }: { children: ReactNode }) {
             ))}
           </SidebarMenu>
         </SidebarContent>
-        <SidebarFooter></SidebarFooter>
+        <SidebarFooter>
+          <div className="flex items-center justify-center gap-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsPickerOpen(true)}
+            >
+              <Paintbrush className="h-5 w-5" />
+            </Button>
+          </div>
+          <ThemePicker open={isPickerOpen} onOpenChange={setIsPickerOpen} />
+        </SidebarFooter>
       </Sidebar>
       <SidebarInset className="max-w-full overflow-x-hidden">
         <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden">
