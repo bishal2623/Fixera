@@ -37,16 +37,19 @@ function ThemeToggle() {
   };
 
   return (
-    <div className="flex items-center space-x-2">
-      <Sun className="h-[1.2rem] w-[1.2rem]" />
-      <Switch
-        id="theme-switch"
-        checked={isDark}
-        onCheckedChange={toggleTheme}
-      />
-      <Moon className="h-[1.2rem] w-[1.2rem]" />
+    <div className="flex items-center justify-center rounded-full border bg-background/50 px-4 py-2">
+      <div className="flex items-center gap-3">
+        <Sun className="h-4 w-4 text-muted-foreground" />
+        <Switch
+          id="theme-switch"
+          checked={isDark}
+          onCheckedChange={toggleTheme}
+          aria-label="Toggle theme"
+        />
+        <Moon className="h-4 w-4 text-muted-foreground" />
+      </div>
     </div>
-  )
+  );
 }
 
 
