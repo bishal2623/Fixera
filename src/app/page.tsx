@@ -39,15 +39,13 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full p-8 flex flex-col items-center justify-center bg-background">
-      <div
-        className="text-center mb-16"
-        style={{ animation: 'fade-in 0.5s ease-out' }}
-      >
-        <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-          AI Co-Builder
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Choose your AI-powered tool to enhance your workflow
+      {/* --- Hero Section --- */}
+      <div className="w-full text-center py-12 px-4">
+        <h1 className="text-5xl font-extrabold mb-4">AI Co-Builder</h1>
+        <p className="text-xl text-muted-foreground mb-8">
+          One toolkit for all your creative needs.
+          <br />
+          Stop switching tabs and start co-creating with AI.
         </p>
       </div>
 
@@ -88,6 +86,52 @@ export default function Home() {
             </Card>
           );
         })}
+      </div>
+
+      {/* --- How It Works Section --- */}
+      <div className="w-full text-center py-16 px-4 mt-16">
+        <h2 className="text-3xl font-bold mb-4">How It Works</h2>
+        <p className="text-lg text-muted-foreground mb-12">
+          Get production-ready results in 3 simple steps.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* Step 1 */}
+          <div className="flex flex-col items-center">
+            <div className="flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full font-bold text-2xl mb-4">
+              1
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Choose Your Tool</h3>
+            <p className="text-muted-foreground">
+              Pick a specialized AI partner, from a Code Refactor to a Creative
+              Canvas.
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="flex flex-col items-center">
+            <div className="flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full font-bold text-2xl mb-4">
+              2
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Provide Your Context</h3>
+            <p className="text-muted-foreground">
+              Give the AI your code, your topic, or your creative ideas to get
+              started.
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="flex flex-col items-center">
+            <div className="flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full font-bold text-2xl mb-4">
+              3
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Co-Create & Iterate</h3>
+            <p className="text-muted-foreground">
+              Collaborate with the AI, refine your results, and export your
+              final work.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

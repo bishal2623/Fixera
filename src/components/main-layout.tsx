@@ -8,12 +8,10 @@ import {
   BotMessageSquare,
   Home,
   GraduationCap,
-  Sun,
-  Moon,
-  Paintbrush,
+  History,
+  Settings,
 } from 'lucide-react';
-import { type ReactNode, useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
+import type { ReactNode } from 'react';
 
 import {
   SidebarProvider,
@@ -23,14 +21,13 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarSeparator,
   SidebarInset,
   SidebarFooter,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import { Button } from '@/components/ui/button';
-import { ThemePicker } from '@/components/theme-picker';
 
-const navItems = [
+const mainNavItems = [
   { href: '/', label: 'Home', icon: Home, tooltip: 'Home' },
   {
     href: '/code-refactor',
@@ -52,47 +49,23 @@ const navItems = [
   },
 ];
 
-function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // Render a placeholder or null on the server and initial client render
-    return <div className="h-10 w-10" />;
-  }
-
-  // Find if the current theme is one of the dark variants
-  const isDark =
-    theme === 'dark' ||
-    theme === 'midnight-blue' ||
-    theme === 'forest-green' ||
-    theme === 'sunset-orange' ||
-    theme === 'purple-haze' ||
-    theme === 'high-contrast';
-
-  return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      aria-label="Toggle light/dark theme"
-    >
-      {isDark ? (
-        <Sun className="h-5 w-5" />
-      ) : (
-        <Moon className="h-5 w-5" />
-      )}
-    </Button>
-  );
-}
+const secondaryNavItems = [
+    {
+        href: '/history',
+        label: 'My History',
+        icon: History,
+        tooltip: 'My History'
+    },
+    {
+        href: '/settings',
+        label: 'Settings',
+        icon: Settings,
+        tooltip: 'Settings'
+    }
+]
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   return (
     <SidebarProvider>
@@ -107,7 +80,24 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {navItems.map((item) => (
+            {mainNavItems.map((item) => (
+              <SidebarMenuItem key={item.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === item.href}
+                  tooltip={item.tooltip}
+                >
+                  <Link href={item.href}>
+                    <item.icon />
+                    <span>{item.label}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+          <SidebarSeparator />
+           <SidebarMenu>
+            {secondaryNavItems.map((item) => (
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton
                   asChild
@@ -124,17 +114,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-          <div className="flex items-center justify-center gap-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsPickerOpen(true)}
-            >
-              <Paintbrush className="h-5 w-5" />
-            </Button>
-          </div>
-          <ThemePicker open={isPickerOpen} onOpenChange={setIsPickerOpen} />
+            {/* Footer can be used for user profile, etc. later */}
         </SidebarFooter>
       </Sidebar>
       <SidebarInset className="max-w-full overflow-x-hidden">
