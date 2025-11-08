@@ -50,7 +50,7 @@ export default function RootLayout({
         >
           <div className="relative min-h-screen">
             <Sidebar />
-            <main>{children}</main>
+            <main className="ml-64">{children}</main>
           </div>
           <Toaster />
         </ThemeProvider>

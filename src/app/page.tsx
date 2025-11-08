@@ -15,7 +15,7 @@ import {
 const Index = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-1 ml-64">
+      <main className="flex-1">
         {/* Hero Section */}
         <section
           id="home"
