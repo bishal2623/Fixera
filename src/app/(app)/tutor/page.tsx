@@ -1,3 +1,5 @@
-import AITutorPage from '@/app/tutor/page';
+import AITutor from '@/components/features/ai-tutor';
 
-export default AITutorPage;
+export default function AITutorPage() {
+  return <AITutor />;
+}
