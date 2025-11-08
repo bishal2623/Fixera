@@ -19,6 +19,14 @@ export default function Home() {
       path: '/code-refactor',
       gradient: 'from-primary/20 to-accent/20',
     },
+     {
+      id: "ai-tutor",
+      title: "AI Tutor",
+      description: "Learn with guided hints and step-by-step problem solving assistance",
+      icon: GraduationCap,
+      path: "/tutor",
+      gradient: "from-accent/20 to-primary/20"
+    },
     {
       id: 'creative-canvas',
       title: 'Creative Canvas',
