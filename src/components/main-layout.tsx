@@ -60,10 +60,6 @@ function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
   if (!mounted) {
     // Render a placeholder or null on the server and initial client render
     return <div className="h-10 w-10" />;

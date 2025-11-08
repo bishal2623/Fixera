@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
+import MainLayout from '@/components/main-layout';
 
 export const metadata: Metadata = {
   title: 'AI Co-Builder - Code Refactor & AI Tutor Tools',
@@ -22,8 +23,6 @@ export const metadata: Metadata = {
     images: ['/opengraph-image-p98pqg.png'],
   },
 };
-
-const MainLayout = dynamic(() => import('@/components/main-layout'), { ssr: false });
 
 export default function RootLayout({
   children,
