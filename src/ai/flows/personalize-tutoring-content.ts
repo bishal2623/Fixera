@@ -66,7 +66,7 @@ const prompt = ai.definePrompt({
   Desired Format: {{{desiredFormat}}}
 
   Create personalized content:
-  `, // Ensure prompt ends in "Create personalized content:" for the model to fill it
+  `,
 });
 
 const personalizeTutoringContentFlow = ai.defineFlow(
