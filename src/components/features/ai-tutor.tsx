@@ -279,12 +279,14 @@ export default function AITutor() {
                 'Chemistry',
                 'Biology',
               ].map((topic) => (
-                <span
+                <Button
                   key={topic}
-                  className="px-3 py-1 rounded-full bg-secondary text-xs border"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSend(`Can you help me with ${topic}?`)}
                 >
                   {topic}
-                </span>
+                </Button>
               ))}
             </div>
           </Card>
