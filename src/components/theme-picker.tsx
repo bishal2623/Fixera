@@ -113,10 +113,6 @@ export function ThemePicker({ open, onOpenChange }: ThemePickerProps) {
                   {theme.description}
                 </p>
                 <Button
-                  onClick={() => {
-                    setTheme(theme.name);
-                    onOpenChange(false);
-                  }}
                   variant={activeTheme === theme.name ? 'default' : 'outline'}
                   className="w-full"
                 >
