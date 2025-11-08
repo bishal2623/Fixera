@@ -8,7 +8,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 
 const SimplifyConceptInputSchema = z.object({
   concept: z.string().describe('The concept to be simplified.'),
@@ -28,7 +28,9 @@ const prompt = ai.definePrompt({
   name: 'simplifyConceptPrompt',
   input: { schema: SimplifyConceptInputSchema },
   output: { schema: SimplifyConceptOutputSchema },
-  prompt: `Explain the following concept in a very simple way, like I'm 5 years old, using an analogy.
+  prompt: `You are an AI Tutor. Your goal is to explain concepts using the "WITH ANALOGIES" learning style.
+  
+  Explain the following concept through a relatable metaphor, comparing it to an everyday experience.
 
   Concept:
   {{concept}}

@@ -8,7 +8,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 
 const SuggestFollowUpsInputSchema = z.object({
   answer: z.string().describe('The AI tutor\'s last answer.'),
@@ -16,7 +16,7 @@ const SuggestFollowUpsInputSchema = z.object({
 export type SuggestFollowUpsInput = z.infer<typeof SuggestFollowUpsInputSchema>;
 
 const SuggestFollowUpsOutputSchema = z.object({
-  questions: z.array(z.string()).describe('An array of 3 short, insightful follow-up questions a student might ask.'),
+  questions: z.array(z.string()).describe('An array of 3 short, insightful follow-up questions a student might ask to deepen their understanding.'),
 });
 export type SuggestFollowUpsOutput = z.infer<typeof SuggestFollowUpsOutputSchema>;
 
@@ -28,12 +28,12 @@ const prompt = ai.definePrompt({
   name: 'suggestFollowUpsPrompt',
   input: { schema: SuggestFollowUpsInputSchema },
   output: { schema: SuggestFollowUpsOutputSchema },
-  prompt: `Based on your last answer, suggest 3 short, insightful follow-up questions a student might ask.
+  prompt: `You are an AI Tutor using the Socratic method. Based on your last answer, suggest 3 short, insightful follow-up questions a student could ask to challenge their thinking and guide them toward a deeper understanding. The questions should encourage discovery, not just ask for facts.
   
   Last Answer:
   {{answer}}
 
-  Respond ONLY with a JSON object containing an array of strings. Example: {"questions": ["question 1", "question 2", "question 3"]}`,
+  Respond ONLY with a JSON object containing an array of strings. Example: {"questions": ["What would happen if we removed that line?", "How is that different from [related concept]?", "Can you think of a real-world example where that would be useful?"]}`,
 });
 
 const suggestFollowUpsFlow = ai.defineFlow(
