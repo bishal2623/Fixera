@@ -4,8 +4,21 @@ import { Toaster } from '@/components/ui/toaster';
 import MainLayout from '@/components/main-layout';
 
 export const metadata: Metadata = {
-  title: 'AI Co-Builder',
-  description: 'Build with AI, not just for AI.',
+  title: 'AI Co-Builder - Code Refactor & AI Tutor Tools',
+  description: 'AI-powered tools for developers and learners. Get intelligent code refactoring suggestions and learn with guided step-by-step tutoring.',
+  authors: [{ name: 'AI Co-Builder' }],
+  metadataBase: new URL('https://lovable.dev'),
+  openGraph: {
+    title: 'AI Co-Builder - Code Refactor & AI Tutor',
+    description: 'AI-powered tools for developers and learners with intelligent code analysis and guided learning',
+    type: 'website',
+    images: ['/opengraph-image-p98pqg.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@Lovable',
+    images: ['/opengraph-image-p98pqg.png'],
+  },
 };
 
 export default function RootLayout({
