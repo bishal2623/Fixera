@@ -1,19 +1,17 @@
-
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
-import MainLayout from '@/components/main-layout';
+import { Sidebar } from '@/components/layout/new-sidebar';
 
 export const metadata: Metadata = {
-  title: 'AI Co-Builder - Code Refactor & AI Tutor Tools',
-  description: 'AI-powered tools for developers and learners. Get intelligent code refactoring suggestions and learn with guided step-by-step tutoring.',
+  title: 'AI Co-Builder - One Toolkit for All Your Creative Needs',
+  description: 'Transform your workflow with AI Co-Builder. Get AI-powered code refactoring, personalized tutoring, and creative design assistance all in one place.',
   authors: [{ name: 'AI Co-Builder' }],
   metadataBase: new URL('https://lovable.dev'),
   openGraph: {
-    title: 'AI Co-Builder - Code Refactor & AI Tutor',
-    description: 'AI-powered tools for developers and learners with intelligent code analysis and guided learning',
+    title: 'AI Co-Builder - One Toolkit for All Your Creative Needs',
+    description: 'Transform your workflow with AI Co-Builder. Stop switching tabs and start co-creating with AI.',
     type: 'website',
     images: ['/opengraph-image-p98pqg.png'],
   },
@@ -39,28 +37,21 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="font-body antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-          themes={[
-            'light',
-            'dark',
-            'midnight-blue',
-            'forest-green',
-            'sunset-orange',
-            'ocean-blue',
-            'purple-haze',
-            'high-contrast',
-          ]}
         >
-          <MainLayout>{children}</MainLayout>
+          <div className="relative min-h-screen">
+            <Sidebar />
+            <main>{children}</main>
+          </div>
           <Toaster />
         </ThemeProvider>
       </body>
