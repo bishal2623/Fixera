@@ -28,7 +28,7 @@ const Index = () => {
               One Toolkit for All Your Creative Needs
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Transform your workflow with AI Co-Builder. Stop switching tabs
+              Transform your workflow with Fixera. Stop switching tabs
               and start co-creating with AI.
             </p>
             <div className="flex items-center justify-center gap-4">
@@ -113,7 +113,7 @@ const Index = () => {
               Ready to Transform Your Workflow?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Join thousands of creators using AI Co-Builder to enhance their
+              Join thousands of creators using Fixera to enhance their
               projects
             </p>
             <Button

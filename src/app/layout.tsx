@@ -5,13 +5,13 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { AppShell } from '@/components/layout/app-shell';
 
 export const metadata: Metadata = {
-  title: 'AI Co-Builder - One Toolkit for All Your Creative Needs',
-  description: 'Transform your workflow with AI Co-Builder. Get AI-powered code refactoring, personalized tutoring, and creative design assistance all in one place.',
-  authors: [{ name: 'AI Co-Builder' }],
+  title: 'Fixera - One Toolkit for All Your Creative Needs',
+  description: 'Transform your workflow with Fixera. Get AI-powered code refactoring, personalized tutoring, and creative design assistance all in one place.',
+  authors: [{ name: 'Fixera' }],
   metadataBase: new URL('https://lovable.dev'),
   openGraph: {
-    title: 'AI Co-Builder - One Toolkit for All Your Creative Needs',
-    description: 'Transform your workflow with AI Co-Builder. Stop switching tabs and start co-creating with AI.',
+    title: 'Fixera - One Toolkit for All Your Creative Needs',
+    description: 'Transform your workflow with Fixera. Stop switching tabs and start co-creating with AI.',
     type: 'website',
     images: ['/opengraph-image-p98pqg.png'],
   },

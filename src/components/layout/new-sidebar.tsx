@@ -24,7 +24,7 @@ export function Sidebar() {
           <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
             <Bot className="w-6 h-6 text-primary" />
           </div>
-          <span className="text-xl font-bold text-foreground">AI Co-Builder</span>
+          <span className="text-xl font-bold text-foreground">Fixera</span>
         </div>
       </div>
 

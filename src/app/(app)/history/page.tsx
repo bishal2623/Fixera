@@ -20,7 +20,7 @@ export default function HistoryPage() {
         <div className="flex-1">
           <h1 className="text-2xl font-bold">My History</h1>
           <p className="text-sm text-muted-foreground">
-            A log of your recent sessions with AI Co-Builder
+            A log of your recent sessions with Fixera
           </p>
         </div>
       </header>
