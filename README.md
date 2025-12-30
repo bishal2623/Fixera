@@ -140,5 +140,14 @@ where learning, building, and creating happen in **one continuous flow**.
 
 ---
 
+## 🔐 License
+This project is licensed under the Apache License 2.0.  
+See the LICENSE file for details.
+
+![License](https://img.shields.io/badge/License-Apache%202.0-blue)
+
+
 > ⚡ Fixera is not about doing more.  
 > It’s about thinking better.
+
+
