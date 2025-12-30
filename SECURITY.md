@@ -1,33 +1,60 @@
-Copyright (c) 2025 Bishal Saha
-All Rights Reserved.
+# 🔐 Security Policy — Fixera
 
-This software, including its source code, design, logic, workflow, and documentation
-(the "Software"), is the exclusive intellectual property of Bishal Saha.
+Fixera is built with a strong focus on responsible development, user privacy, and ethical AI usage.  
+We take security seriously and appreciate the community’s efforts to help keep this project safe.
 
-No part of this Software may be:
-- copied
-- modified
-- merged
-- published
-- distributed
-- sublicensed
-- deployed
-- used for commercial or institutional purposes
+---
 
-without prior explicit written permission from the owner.
+## 🛡️ Supported Versions
 
-Permission is granted only to view the source code for learning and evaluation purposes.
-Any attempt to use this Software or its derivatives in projects, products, platforms,
-or services without authorization is strictly prohibited.
+| Version | Supported |
+|--------|-----------|
+| Latest | ✅ Yes |
+| Older releases | ❌ No |
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY, EXPRESS OR IMPLIED.
-IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY
-ARISING FROM UNAUTHORIZED USE OF THIS SOFTWARE.
+Only the latest version of Fixera receives security updates and patches.
 
-Unauthorized use may result in legal action under applicable intellectual
-property laws.
+---
 
+## 🚨 Reporting a Vulnerability
 
+If you discover a security vulnerability, **please do not disclose it publicly**.
 
-![Security](https://img.shields.io/badge/Security-Responsible%20AI-blue)
-![License](https://img.shields.io/badge/License-Custom-green)
+### 📬 Report privately:
+- Contact the maintainer via **LinkedIn**  
+  👉 https://www.linkedin.com/in/bishal-saha-934484378/
+
+### 📝 What to include:
+- Clear description of the issue
+- Steps to reproduce
+- Potential impact
+- Screenshots or logs (if available)
+
+You can expect:
+- ⏱️ Acknowledgement within **48 hours**
+- 🛠️ Resolution as soon as possible
+- 🙏 Proper credit (if you wish)
+
+---
+
+## 🔒 Security Principles
+
+- No silent or hidden AI actions
+- All operations are user-triggered
+- No unnecessary data storage
+- Session-based interaction history
+- Designed with responsible and ethical AI usage in mind
+
+---
+
+## ⚠️ Misuse & Restrictions
+
+Using Fixera or its source code for malicious, deceptive, or unethical purposes is **strictly prohibited**.
+
+Any misuse that violates ethical software practices may result in:
+- License termination
+- Legal consequences (if applicable)
+
+---
+
+Thank you for helping keep **Fixera** secure and trustworthy 🚀
