@@ -1,24 +1,33 @@
-MIT License
-
 Copyright (c) 2025 Bishal Saha
+All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, subject to the following conditions:
+This software, including its source code, design, logic, workflow, and documentation
+(the "Software"), is the exclusive intellectual property of Bishal Saha.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+No part of this Software may be:
+- copied
+- modified
+- merged
+- published
+- distributed
+- sublicensed
+- deployed
+- used for commercial or institutional purposes
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+without prior explicit written permission from the owner.
+
+Permission is granted only to view the source code for learning and evaluation purposes.
+Any attempt to use this Software or its derivatives in projects, products, platforms,
+or services without authorization is strictly prohibited.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY, EXPRESS OR IMPLIED.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY
+ARISING FROM UNAUTHORIZED USE OF THIS SOFTWARE.
+
+Unauthorized use may result in legal action under applicable intellectual
+property laws.
+
 
 
 ![Security](https://img.shields.io/badge/Security-Responsible%20AI-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+![License](https://img.shields.io/badge/License-Custom-green)
