@@ -7,7 +7,7 @@ Fixera is not just another AI tool — it’s a **focused productivity ecosystem
 Designed to remove friction from modern workflows, Fixera brings **code intelligence, guided learning, and creative ideation** into a single unified interface.
 
 No more tool-hopping.  
-No broken focus.  
+No broken focus.    
 Just **you + AI**, working in flow.
 
 ---
